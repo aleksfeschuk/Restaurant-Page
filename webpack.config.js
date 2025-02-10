@@ -19,7 +19,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
         type: "asset/resource",  
         generator: {
-          filename: "images/[name][hash][ext]",
+          filename: "images/[name][hash][ext]" 
         }
       },
     ],
@@ -27,12 +27,12 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        { from: "src/images", to: "dist/images" }, 
+        { from: "src/images", to:"images"},
       ],
     }),
   ],
   devServer: {
-    static: path.resolve(__dirname, "dist"), 
+    static: "./dist", 
     port: 3000,
     open: true,
   },
