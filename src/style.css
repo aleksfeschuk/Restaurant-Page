@@ -18,6 +18,8 @@ header {
     align-items: center;
     text-align: center;
     min-height: 100vh;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
 }
 
 nav {
@@ -31,6 +33,7 @@ nav {
     text-align: center;
 }
 
+
 nav button {
     margin: 0 10px;
     padding: 10px 20px;
@@ -38,10 +41,16 @@ nav button {
     color: white;
     border: none;
     cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease-in-out;
 }
 
 nav button:hover {
     background-color: #555;
+    transform: scale(1.1);
+}
+
+nav button:active {
+    transform: scale(0.95);
 }
 
 .home-btn, .menu-btn, .about-btn {
@@ -102,4 +111,94 @@ nav button:hover {
 
 .pizza-spinaci {
     background-image: url('./images/pizza_spinaciericotta.jpg');
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(5px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+}
+
+
+/* Header Animation */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+header {
+    animation: fadeInScale 1s ease-in-out forwards;
+}
+
+/* Button Animation */
+
+@keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav button {
+    animation: fadeSlideIn 0.5 ease-in-out forwards
+}
+
+/* Pulse Animation for Menu Items */
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.menu-item {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Typing Effect */
+
+.typing {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid white;
+    animation: typing 2s steps(20, end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
 }

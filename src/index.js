@@ -2,7 +2,8 @@ import './style.css';
 
 
 
-// fnction pages
+
+// function pages
 function loadHome() {
     const container = document.createElement('div');
     const heading = document.createElement('h1');
@@ -24,20 +25,23 @@ function loadMenu() {
     const heading = document.createElement('h1');
     heading.textContent = 'Our Menu';
     
-    const menuGrid = document.createElement('ul');
+    const menuGrid = document.createElement('div');
     menuGrid.classList.add('menu-grid');
 
     const items = [
         { name: 'Cappuccino', price: '$4.50', className: 'coffee' },
         { name: 'Margherita Pizza', price: '$13.99', className: 'pizza-margherita' },
         { name: 'Parma Pizza', price: '$16.99', className: 'pizza-parma' },
-        { name: 'Spinaci e Ricotta Pizza', price: '$20.99', className: 'pizza-spinaci' },
+        { name: 'Spinacie Ricotta Pizza', price: '$20.99', className: 'pizza-spinaci' },
     ];
 
 
     items.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('menu-item', item.className);
+
+        const img = document.createElement('div');
+        img.classList.add('menu-img', item.className);
 
         const textContainer = document.createElement('div');
         textContainer.classList.add('menu-text');
@@ -51,6 +55,7 @@ function loadMenu() {
 
         textContainer.appendChild(name);
         textContainer.appendChild(price);
+        itemDiv.appendChild(img);
         itemDiv.appendChild(textContainer);
         menuGrid.appendChild(itemDiv);
     });
@@ -76,8 +81,21 @@ function loadAboutUs() {
 
 function updateContent(contentFunction) {
     const content = document.getElementById('content');
-    content.innerHTML = '';
-    content.appendChild(contentFunction());
+
+    content.classList.add('fade-out');
+
+    setTimeout(() => {
+        content.innerHTML = '';
+        content.appendChild(contentFunction());
+
+        content.classList.remove('fade-out');
+        content.classList.add('fade-in');
+    }, 300)
+    
+
+    function addTypingEffect(element) {
+        element.classList.add('typing')
+    }
 }
 
 document.querySelector('.home-btn').addEventListener('click', () => updateContent(loadHome));
