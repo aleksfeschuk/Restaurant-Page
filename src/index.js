@@ -8,6 +8,10 @@ function loadHome() {
     const container = document.createElement('div');
     const heading = document.createElement('h1');
     heading.textContent = 'Welcome to Cortile Italiano';
+    heading.classList.add('typing');
+
+    setTimeout(() => 
+        heading.classList.remove('typing'), 2000);
 
     const paragraph = document.createElement('p');
     paragraph.textContent = 'Experience the best Italian cuisine right here!';
@@ -24,6 +28,9 @@ function loadMenu() {
 
     const heading = document.createElement('h1');
     heading.textContent = 'Our Menu';
+    heading.classList.add('typing');
+
+    setTimeout(() => heading.classList.remove('typing'), 2000);
     
     const menuGrid = document.createElement('div');
     menuGrid.classList.add('menu-grid');
@@ -70,23 +77,43 @@ function loadAboutUs() {
     const container = document.createElement('div');
     container.classList.add('about-container');
 
+    const heading = document.createElement('h1');
+    heading.textContent = 'About Us';
+    heading.classList.add('typing');
+
+    setTimeout(() => heading.classList.remove('typing'), 2000);
+    
     container.innerHTML = `
-        <h1>About Us</h1>
         <p>We are a family-run Italian restaurant, bringing traditional Italian recipes to the heart of the city.</p>
     `;
-
+    
+    container.prepend(heading);
 
     return container;
 }
 
 function updateContent(contentFunction) {
     const content = document.getElementById('content');
+    const header = content.querySelector('h1');
+    
+
+    if(header) {
+        header.classList.remove('typing');
+    }
 
     content.classList.add('fade-out');
 
     setTimeout(() => {
         content.innerHTML = '';
         content.appendChild(contentFunction());
+
+        const newHeader = content.querySelector('h1');
+        if (newHeader) {
+            newHeader.classList.add('typing');
+        }
+
+        setTimeout(() => 
+            newHeader.classList.remove('typing'), 2000);
 
         content.classList.remove('fade-out');
         content.classList.add('fade-in');
