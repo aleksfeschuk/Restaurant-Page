@@ -1,12 +1,28 @@
-body {
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.6;
+/* Common Styles */
+
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', cursive;
+    line-height: 1.6;
     background-color: #f4f4f4;
-    overflow-x: hidden;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding-bottom: 80px;
+}
+
+
+
+/* Header */
 header {
     background-image: url('./images/La-Pergola-photo6016eee5a4044-1440x810-1.jpg');
     position: relative;
@@ -22,6 +38,9 @@ header {
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
 }
+
+
+
 
 h1 {
     font-family: 'Roboto', sans-serif;
@@ -41,6 +60,7 @@ header h1:hover {
 }
 
 
+/* Navigation */
 nav {
     position: fixed;
     top: 0;
@@ -56,20 +76,23 @@ nav {
 
 nav button {
     margin: 0 15px;
-    padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #333;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    font-size: 18px;
+    padding: 12px 24px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 nav button:hover {
-    background-color: rgba(255, 87, 34, 0.8);
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 87, 34, 0.9);
+    border-color: rgba(255, 87, 34, 1);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0px 10px 20px rgba(255, 87, 34, 0.4);
 }
 
 nav button:active {
@@ -77,9 +100,7 @@ nav button:active {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.home-btn, .menu-btn, .about-btn {
-    font-size: 16px;
-}
+/* Menu */
 
 .menu-container {
     padding: 20px;
@@ -136,6 +157,125 @@ nav button:active {
 .menu-item:hover .menu-text {
     background: rgba(255, 87, 34, 0.8);
 }
+
+/* contacts */
+
+.contact {
+    position: relative;
+    background: white;
+    padding: 2rem;
+    z-index: 20;
+}
+
+.info-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 2rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.info-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+}
+
+.icon {
+    font-size: 40px;
+    color: #ff7043;
+    text-shadow: 0px 4px 10px rgba(255, 87, 34, 0.8);
+}
+
+.info-card h2 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 10px 0;
+}
+
+.info-card p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .info-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* footer */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    box-shadow: 0px -10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.main-content {
+    padding-bottom: 0px;
+}
+
+body {
+    padding: 0;
+}
+
+.footer:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #ffa726;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffcc00;
+    text-shadow: 0px 0px 10px #ffcc00;
+}
+
+.footer p span {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+
 
 .price {
     font-size: 18px;
@@ -204,7 +344,7 @@ header {
 }
 
 nav button {
-    animation: fadeSlideIn 0.5 ease-in-out forwards
+    animation: fadeSlideIn 0.5s ease-in-out forwards
 }
 
 
@@ -226,14 +366,13 @@ nav button {
     animation: pulse 1.5s infinite ease-in-out;
 }
 
+
 /* Typing Effect */
 
+
 .typing {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid white;
-    font-size: 2.5rem;
-    animation: typing 2s steps(20, end) forwards, blink 0.7s infinite;
+    border-right: none;
+    animation: none;
 }
 
 @keyframes typing {
@@ -250,3 +389,4 @@ nav button {
         border-color: transparent;
     }
 }
+

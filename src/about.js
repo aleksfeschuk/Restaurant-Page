@@ -1,18 +1,19 @@
 export function loadAboutUs() {
     const container = document.createElement('div');
-    container.classList.add('about-container');
+    container.classList.add('about-container', 'main-content');
 
     const heading = document.createElement('h1');
     heading.textContent = 'About Us';
-    heading.classList.add('typing');
+    
+    const paragraph = document.createElement('p');
+    paragraph.textContent = 'Cortile Italiano is a family-owned restaurant offering authentic Italian cuisine.';
 
-    setTimeout(() => heading.classList.remove('typing'), 2000);
+    container.appendChild(heading);
+    container.appendChild(paragraph);
     
-    container.innerHTML = `
-        <p>We are a family-run Italian restaurant, bringing traditional Italian recipes to the heart of the city.</p>
-    `;
-    
-    container.prepend(heading);
+    const contentDiv = document.getElementById('content');
+    contentDiv.innerHTML = '';
+    contentDiv.appendChild(container);
 
     return container;
 }

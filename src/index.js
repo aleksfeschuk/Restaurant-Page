@@ -4,15 +4,21 @@ import { loadHome } from './home.js';
 import { loadMenu } from './menu.js';
 import { loadAboutUs } from './about.js';
 import { updateContent } from './utils.js';
+import { createFooter } from './footer.js';
 
-document.querySelector('.home-btn').addEventListener('click', () => {
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.home-btn').addEventListener('click', () => {
+        updateContent(loadHome);
+    });
+    document.querySelector('.menu-btn').addEventListener('click', () => {
+        updateContent(loadMenu);
+    });
+    document.querySelector('.about-btn').addEventListener('click', () => {
+        updateContent(loadAboutUs);
+    });
+    
     updateContent(loadHome);
-});
-document.querySelector('.menu-btn').addEventListener('click', () => {
-    updateContent(loadMenu);
-});
-document.querySelector('.about-btn').addEventListener('click', () => {
-    updateContent(loadAboutUs);
-});
+    createFooter();
+})
 
-updateContent(loadHome);
