@@ -24,6 +24,11 @@ export function loadHome() {
     const container = document.createElement('div');
     container.classList.add('home', 'main-content');
 
+    const subheading = document.createElement('h2');
+    subheading.textContent = 'Experience the best Italian cuisine right here!';
+    subheading.classList.add('subheading');
+    container.appendChild(subheading);
+
     const heading = document.createElement('h1');
     heading.textContent = 'Welcome to Cortile Italiano';
     heading.classList.add('interactive-heading'); // Add a class for styling
@@ -34,11 +39,11 @@ export function loadHome() {
         loadAboutUs();
     });
 
+    container.appendChild(subheading);
     container.appendChild(heading);
+    
 
-    const paragraph = document.createElement('p');
-    paragraph.textContent = 'Experience the best Italian cuisine right here!';
-
+    
     const infoContainer = document.createElement('div');
     infoContainer.classList.add('info-container');
 
@@ -64,8 +69,6 @@ export function loadHome() {
     infoContainer.appendChild(locationCard);
     infoContainer.appendChild(contactCard);
 
-    container.appendChild(heading);
-    container.appendChild(paragraph)
     container.appendChild(infoContainer);
 
     return container;

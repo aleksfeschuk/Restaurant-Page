@@ -39,6 +39,8 @@ header {
     min-height: 100vh;
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
+    animation: fadeInScale 1s ease-in-out forwards;
+    animation-delay: 0.5s;
 }
 
 
@@ -52,7 +54,8 @@ h1 {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease-in-out
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 
@@ -62,6 +65,26 @@ header h1:hover {
     transform: scale(1.05);
 }
 
+
+.subheading {
+    font-family: 'Allura', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    top: -120px;
+}
+
+.interactive-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    margin-top: -120px;
+}
 
 /* Navigation */
 nav {
@@ -113,6 +136,7 @@ nav button {
     transition: all 0.3s ease-in-out;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px);
+    cursor: pointer;
 }
 
 nav button:hover {
@@ -131,7 +155,7 @@ nav button:active {
 
 .menu-container {
     padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.5);
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -178,7 +202,9 @@ nav button:active {
     padding: 10px;
     width: 100%;
     text-align: center;
+    border-radius: inherit;
     transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .menu-item:hover .menu-text {
@@ -221,6 +247,7 @@ nav button:active {
     width: 250px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .info-card:hover {
@@ -252,6 +279,148 @@ nav button:active {
         align-items: center;
     }
 }
+
+/* modal card in menu */
+
+.modal, .confirmation-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 350px;
+    position: relative;
+}
+
+.modal-content img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    padding: 6px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quantity-btn {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.quantity-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #004080);
+    transform: scale(1.1);
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.confirmation-content {
+    text-align: center;
+}
+
+.confirmation-content .icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.confirmation-content h2 {
+    color: green;
+}
+
+.close-btn, .close-confirm {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.order-confirm, .order-cancel {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+button {
+    padding: 10px 16px;
+    margin: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button.order-confirm {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #fff;
+}
+
+button.order-cancel, button.close-confirm-btn {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: #fff;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    opacity: 0.9;
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+}
+
 
 /* footer */
 
@@ -309,7 +478,7 @@ footer a:hover {
     font-weight: bold;
 }
 
-.coffee {
+/* .coffee {
     background-image: url('./images/coffe_cappucino.jpg');
 }
 
@@ -323,7 +492,7 @@ footer a:hover {
 
 .pizza-spinaci {
     background-image: url('./images/pizza_spinaciericotta.jpg');
-}
+} */
 
 .fade-out {
     opacity: 0;
@@ -352,10 +521,10 @@ footer a:hover {
     }
 }
 
-header {
+/* header {
     animation: fadeInScale 1s ease-in-out forwards;
     animation-delay: 0.5s;
-}
+} */
 
 /* Button Animation */
 
@@ -370,14 +539,14 @@ header {
     }
 }
 
-nav button {
+/* nav button {
     animation: fadeSlideIn 0.5s ease-in-out forwards
-}
+} */
 
 
 /* Pulse Animation for Menu Items */
 
-@keyframes pulse {
+/* @keyframes pulse {
     0% {
         transform: scale(1);
     }
@@ -391,7 +560,7 @@ nav button {
 
 .menu-item {
     animation: pulse 1.5s infinite ease-in-out;
-}
+} */
 
 
 /* Typing Effect */
