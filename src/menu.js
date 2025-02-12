@@ -13,13 +13,6 @@ export function loadMenu() {
     const menuGrid = document.createElement('div');
     menuGrid.classList.add('menu-grid');
 
-    // const items = [
-    //     { name: 'Cappuccino', price: '$4.50', className: 'coffee' },
-    //     { name: 'Margherita Pizza', price: '$13.99', className: 'pizza-margherita' },
-    //     { name: 'Parma Pizza', price: '$16.99', className: 'pizza-parma' },
-    //     { name: 'Spinacie Ricotta Pizza', price: '$20.99', className: 'pizza-spinaci' },
-    // ];
-
     menuItems.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('menu-item');
@@ -44,15 +37,6 @@ export function loadMenu() {
         itemDiv.appendChild(img);
         itemDiv.appendChild(textContainer);
         menuGrid.appendChild(itemDiv);
-        // const price = document.createElement('p');
-        // price.classList.add('price');
-        // price.textContent = item.price;
-
-        // textContainer.appendChild(name);
-        // textContainer.appendChild(price);
-        // itemDiv.appendChild(img);
-        // itemDiv.appendChild(textContainer);
-        // menuGrid.appendChild(itemDiv);
     });
 
     container.appendChild(heading);
@@ -115,10 +99,43 @@ function openModal(item) {
 
 
 
-    orderButton.addEventListener('click', () => {
-        const quantity = modal.querySelector('#quantity').value;
-        modal.remove();
-        showConfirmation(quantity, item.name);
+    // add the logic for sending the order to the server 
+
+    orderButton.addEventListener('click', async() => {
+        const quantity = quantityInput.value;
+        const customerName = 'John Doe';
+        const customerPhone = '1234566890';
+
+        const orderData = {
+            itemName: item.name,
+            quantity: quantity,
+            customerName: customerName,
+            customerPhone: customerPhone,
+        };
+
+
+        //send the order to the backend
+
+        try {
+            const response = await fetch('http://localhost:5000/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                modal.remove();
+                showConfirmation(quantity, item.name);
+            } else {
+                alert(result.error || 'Something went wrong');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Server error. Try again later');
+        }
     });
 }
 

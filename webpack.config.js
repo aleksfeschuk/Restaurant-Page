@@ -45,12 +45,13 @@ module.exports = {
     static: "./dist", 
     port: 3000,
     open: true,
-    proxy: [
-      { context: ['/api'],
+    historyApiFallback: true, 
+    proxy: {
+      '/api': {
         target: 'http://localhost:5000', 
         secure: false,
         changeOrigin: true,
-        }
-    ],
+      }
+    },
   },
 };
