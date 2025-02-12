@@ -3,7 +3,7 @@ export function loadAboutUs() {
     container.classList.add('about-container');
     
 
-    const heading = document.createElement('h1');
+    // const heading = document.createElement('h1');
     const textSection = document.createElement('div');
     textSection.classList.add('about-text');
     textSection.innerHTML= `
@@ -46,10 +46,82 @@ export function loadAboutUs() {
     `;
 
 
+    const responseMessage = document.createElement('div');
+    responseMessage.classList.add('response-message');
+    formSection.appendChild(responseMessage);
+
     container.appendChild(formSection);
     container.appendChild(textSection);
-    // container.appendChild(heading);
+    
 
+    const form = formSection.querySelector("#reservation-form");
+
+    // Add an event handler for the form submission
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Prevent the page from reloading
+
+        const name = form.querySelector("#name").value.trim();
+        const phone = form.querySelector("#phone").value.trim();
+        const date = form.querySelector("#date").value;
+        const time = form.querySelector("#time").value;
+        const message = form.querySelector("#message").value.trim();
+        const responseMessage = document.querySelector(".response-message");
+
+        if (!name || !phone || !date || !time) {
+            responseMessage.textContent = "Please fill out all required fields!";
+            responseMessage.style.color = "red";
+            return;
+        }
+
+        const reservationData = { name, phone, date, time, message};
+
+        try {
+            const response = await fetch("/api/reservations", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(reservationData),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                responseMessage.textContent = "";
+                responseMessage.style.color = "green";
+                form.reset();
+
+                showModal("Reservation successful!", "green");
+            } else {
+                responseMessage.textContent = result.error || "Something went wrong";
+                responseMessage.style.color = "red";
+            }
+        } catch (error) {
+            responseMessage.textContent = "Server error. Try again later";
+            responseMessage.style.color = "red";
+        }
+    });
+
+    function showModal(message, color) {
+        const modalContainer = document.createElement('div');
+        modalContainer.classList.add('modal-container');
+
+        const modalContent = document.createElement('div');
+        modalContent.classList.add('modalAbout-content');
+
+        const modalMessage = document.createElement('p');
+        modalMessage.textContent = message;
+        modalMessage.style.color = color;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.textContent = 'Close';
+        closeBtn.addEventListener('click', () => {
+            document.body.removeChild(modalContainer);
+        });
+
+        modalContent.appendChild(modalMessage);
+        modalContent.appendChild(closeBtn);
+        modalContainer.appendChild(modalContent);
+        document.body.appendChild(modalContainer);
+    }
 
 
     return container;

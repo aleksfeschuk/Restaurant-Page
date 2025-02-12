@@ -1,10 +1,14 @@
 const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin"); 
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin"); 
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    main: "./src/index.js",
+    admin: "./src/admin.js" //admin panels
+  },
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
@@ -25,15 +29,28 @@ module.exports = {
     ],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "dist", "index.html"),
+      filename: "index.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "dist", "admin.html"),
+      filename: "admin.html",
+    }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: "src/images", to:"images"},
-      ],
+      patterns: [{ from: "src/images", to:"images"}],
     }),
   ],
   devServer: {
     static: "./dist", 
     port: 3000,
     open: true,
+    proxy: [
+      { context: ['/api'],
+        target: 'http://localhost:5000', 
+        secure: false,
+        changeOrigin: true,
+        }
+    ],
   },
 };
