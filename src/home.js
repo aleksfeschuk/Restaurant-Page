@@ -35,8 +35,11 @@ export function loadHome() {
 
     setTimeout(() => heading.classList.remove('typing'), 2000);
 
+
     heading.addEventListener('click', () => {
-        loadAboutUs();
+        const mainContent = document.querySelector('.main-content');
+        mainContent.innerHTML = '';
+        mainContent.appendChild(loadAboutUs());
     });
 
     container.appendChild(subheading);
@@ -69,6 +72,7 @@ export function loadHome() {
     infoContainer.appendChild(locationCard);
     infoContainer.appendChild(contactCard);
 
+    container.appendChild(heading);
     container.appendChild(infoContainer);
 
     return container;
