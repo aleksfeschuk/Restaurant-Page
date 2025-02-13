@@ -208,6 +208,13 @@ nav button:active {
     /* box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); */
 }
 
+/* .menu-item img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+} */
+
+
 .menu-item:hover {
     transform: scale(1.05);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
@@ -325,6 +332,9 @@ nav button:active {
 
 .modal-content img {
     width: 100%;
+    max-width: 250px;
+    height: auto;
+    object-fit: contain;
     border-radius: 8px;
     margin-bottom: 10px;
 }
@@ -655,7 +665,7 @@ footer a:hover {
 }
 
 
-/* Button Animation */
+/* Button Animation */ 
 
 @keyframes fadeSlideIn {
     0% {
@@ -672,7 +682,7 @@ footer a:hover {
 /* Typing Effect */
 
 
-.typing {
+/* .typing {
     border-right: none;
     animation: none;
 }
@@ -689,6 +699,98 @@ footer a:hover {
 @keyframes blink {
     50% {
         border-color: transparent;
+    }
+} */
+
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 2rem;
+        padding: 10px;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+    }
+
+    nav .nav-title{
+        display: none;
+    }
+
+    .subheading {
+        visibility: hidden;
+    }
+
+    .info-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .info-container h1, .info-container p {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .about-container {
+        flex-direction: column;
+        padding: 15px;
+        margin: 0 10px;
+        box-sizing: border-box;
+        max-width: 100%;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    .about-text {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 5px;
+        margin-top: 0px;
+        padding: 0 10px;
+        text-align: center;
+    }
+
+    .reservation-form {
+        max-width: 100%;
+        margin-top: 100px;
+        padding: 100px;
+        box-sizing: border-box;
+        border-radius: 8px;
+    } 
+
+    .info-container img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .menu-container {
+        padding: 10px;
+    }
+    
+
+    .menu-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .menu-item {
+        margin-bottom: 10px;
+        padding: 10px;
+        
+    }
+
+    .modal-content img {
+        max-width: 180px;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 15px;
     }
 }
 

@@ -16,6 +16,7 @@ export function loadMenu() {
     menuItems.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('menu-item');
+        itemDiv.id = item.id; 
 
         const img = document.createElement('div');
         img.classList.add('menu-img');
