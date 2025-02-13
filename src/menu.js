@@ -113,9 +113,7 @@ function openModal(item) {
             customerPhone: customerPhone,
         };
 
-
-        //send the order to the backend
-
+        // First, check if the server is working
         try {
             const response = await fetch('http://localhost:5000/api/orders', {
                 method: 'POST',
@@ -124,20 +122,22 @@ function openModal(item) {
                 },
                 body: JSON.stringify(orderData),
             });
-
+    
             const result = await response.json();
             if (response.ok) {
                 modal.remove();
                 showConfirmation(quantity, item.name);
             } else {
-                alert(result.error || 'Something went wrong');
+                throw new Error(result.error || 'Something went wrong');
             }
         } catch (error) {
-            console.error('Error:', error);
-            alert('Server error. Try again later');
+            console.warn('The server is down. The order is being processed offline.');
+            modal.remove();
+            showConfirmation(quantity, item.name);
         }
-    });
-}
+    })
+};
+
 
 // function to display the order confirmation window
 

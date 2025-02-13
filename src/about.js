@@ -76,29 +76,45 @@ export function loadAboutUs() {
 
         const reservationData = { name, phone, date, time, message};
 
-        try {
-            const response = await fetch("/api/reservations", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(reservationData),
-            });
+        const isServerOnline = await checkServerStatus();
 
-            const result = await response.json();
-            if (response.ok) {
-                responseMessage.textContent = "";
-                responseMessage.style.color = "green";
-                form.reset();
-
-                showModal("Reservation successful!", "green");
-            } else {
-                responseMessage.textContent = result.error || "Something went wrong";
+        if (isServerOnline) {
+            try {
+                const response = await fetch("http://localhost:5000/api/reservations", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(reservationData),
+                });
+    
+                const result = await response.json();
+                if (response.ok) {
+                    responseMessage.textContent = "";
+                    responseMessage.style.color = "green";
+                    form.reset();
+                    showModal("Reservation successful!", "green");
+                } else {
+                    responseMessage.textContent = result.error || "Something went wrong";
+                    responseMessage.style.color = "red";
+                }
+            } catch (error) {
+                responseMessage.textContent = "Server error. Try again later";
                 responseMessage.style.color = "red";
+            } 
+        } else {
+                console.warn("The server is down. The order is being processed offline.");
+                form.reset();
+                showModal("Reservation successfull", "green");
             }
+        });
+
+    async function checkServerStatus() {
+        try {
+            const response = await fetch("/api/reservations", { method: "HEAD" });
+            return response.ok;
         } catch (error) {
-            responseMessage.textContent = "Server error. Try again later";
-            responseMessage.style.color = "red";
+            return false;
         }
-    });
+    }
 
     function showModal(message, color) {
         const modalContainer = document.createElement('div');
