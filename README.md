@@ -1,4 +1,3 @@
-🍽 Restaurant Page 
 
 ## 🚀 Live Demo 
 
@@ -6,6 +5,7 @@
 
 https://restaurant-page-aleksfeshchuk.netlify.app/
 
+🍽 Restaurant Page 
 
 Restaurant Page is a restaurant website built using pure JavaScript for the frontend and Node.js for the backend. The project demonstrates the use of a modular approach, build with Webpack, and front-end server interaction.
 
